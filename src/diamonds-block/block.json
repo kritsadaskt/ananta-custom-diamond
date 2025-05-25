@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ananta-custom-diamond/diamonds-block",
+	"version": "1.0.0",
+	"title": "Ananta Diamonds Block",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Display diamonds from Ananta's diamond database",
+	"keywords": ["diamond", "jewelry", "ananta"],
+	"supports": {
+		"html": false
+	},
+	"textdomain": "ananta-custom-diamond",
+	"editorScript": "file:./index.js"
+}

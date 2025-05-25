@@ -1,0 +1,12 @@
+{
+  "name": "ananta-custom-diamond",
+  "version": "1.0.0",
+  "description": "Allow user to add custom diamond to the product.",
+  "scripts": {
+    "build": "wp-scripts build src/product-diamond-selector/index.js --output-path=build",
+    "start": "wp-scripts start src/product-diamond-selector/index.js --output-path=build"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.17.0"
+  }
+}
