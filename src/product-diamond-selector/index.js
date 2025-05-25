@@ -1,4 +1,5 @@
 import { createRoot, useState, useEffect } from '@wordpress/element';
+import './style.scss';
 
 const DiamondSelector = () => {
     const [diamonds, setDiamonds] = useState([]);
@@ -9,6 +10,10 @@ const DiamondSelector = () => {
     useEffect(() => {
         fetchDiamonds();
     }, []);
+
+    useEffect(() => {
+        selectedDiamond && console.log('selectedDiamond', selectedDiamond);
+    }, [selectedDiamond]);
 
     const fetchDiamonds = async () => {
         try {
@@ -33,7 +38,7 @@ const DiamondSelector = () => {
                 className="diamond-dropdown"
                 value={selectedDiamond?.id || ''}
                 onChange={(e) => {
-                    const diamond = diamonds.find(d => d.id === parseInt(e.target.value));
+                    const diamond = diamonds.find(d => parseInt(d.id) === parseInt(e.target.value));
                     setSelectedDiamond(diamond);
                 }}
             >
@@ -44,28 +49,6 @@ const DiamondSelector = () => {
                     </option>
                 ))}
             </select>
-            <style>{`
-                .diamond-list {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                    gap: 20px;
-                    margin-top: 20px;
-                }
-                .diamond-item {
-                    border: 1px solid #ddd;
-                    padding: 15px;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                }
-                .diamond-item:hover {
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                }
-                .diamond-item.selected {
-                    border-color: #0073aa;
-                    background-color: #f0f6fc;
-                }
-            `}</style>
         </div>
     );
 };

@@ -417,7 +417,7 @@ function ananta_cd_enqueue_scripts() {
     $script_path = plugin_dir_url( __FILE__ ) . 'build/index.asset.php';
     if (!file_exists($script_path)) {
         wp_enqueue_script('ananta-cd-diamond-selector', 
-        plugin_dir_url( __FILE__ ) . 'build/index.js', ['wp-element'], '1.0.0', true);
+        plugin_dir_url( __FILE__ ) . 'build/index.js', ['wp-element'], filemtime(plugin_dir_path( __FILE__ ) . 'build/index.js'), true);
     } else {
         $script_asset = require $script_path;
         wp_enqueue_script('ananta-cd-diamond-selector', 
@@ -428,6 +428,11 @@ function ananta_cd_enqueue_scripts() {
     }
 }
 add_action('wp_enqueue_scripts', 'ananta_cd_enqueue_scripts');
+
+function ananta_cd_enqueue_styles() {
+    wp_enqueue_style('ananta-cd-diamond-selector', plugin_dir_url( __FILE__ ) . 'build/style-index.css', array(), filemtime(plugin_dir_path( __FILE__ ) . 'build/style-index.css'));
+}
+add_action('wp_enqueue_scripts', 'ananta_cd_enqueue_styles');
 
 function anata_cd_diamond_selector_render() {
     if (!is_product()) {
